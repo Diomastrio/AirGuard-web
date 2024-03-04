@@ -77,13 +77,14 @@ export default function DashPosts() {
         <>
           <Table hoverable className='shadow-md'>
             <Table.Head>
-              <Table.HeadCell>Date updated</Table.HeadCell>
-              <Table.HeadCell>Post image</Table.HeadCell>
-              <Table.HeadCell>Post title</Table.HeadCell>
-              <Table.HeadCell>Category</Table.HeadCell>
-              <Table.HeadCell>Delete</Table.HeadCell>
+              <Table.HeadCell>Fecha de actualizacion</Table.HeadCell>
+              <Table.HeadCell>Contenido de comentario</Table.HeadCell>
+              <Table.HeadCell>Numbero de likes</Table.HeadCell>
+              <Table.HeadCell>PostId</Table.HeadCell>
+              <Table.HeadCell>UserId</Table.HeadCell>
+              <Table.HeadCell>Eliminar</Table.HeadCell>
               <Table.HeadCell>
-                <span>Edit</span>
+                <span>Editar</span>
               </Table.HeadCell>
             </Table.Head>
             {userPosts.map((post) => (
@@ -118,7 +119,7 @@ export default function DashPosts() {
                       }}
                       className='font-medium text-red-500 hover:underline cursor-pointer'
                     >
-                      Delete
+                      Eliminar
                     </span>
                   </Table.Cell>
                   <Table.Cell>
@@ -126,7 +127,7 @@ export default function DashPosts() {
                       className='text-teal-500 hover:underline'
                       to={`/update-post/${post._id}`}
                     >
-                      <span>Edit</span>
+                      <span>Editar</span>
                     </Link>
                   </Table.Cell>
                 </Table.Row>
@@ -138,12 +139,12 @@ export default function DashPosts() {
               onClick={handleShowMore}
               className='w-full text-teal-500 self-center text-sm py-7'
             >
-              Show more
+              Mostrar mas
             </button>
           )}
         </>
       ) : (
-        <p>You have no posts yet!</p>
+        <p>No tienes publicaciones aun!</p>
       )}
       <Modal
         show={showModal}
@@ -156,14 +157,14 @@ export default function DashPosts() {
           <div className='text-center'>
             <HiOutlineExclamationCircle className='h-14 w-14 text-gray-400 dark:text-gray-200 mb-4 mx-auto' />
             <h3 className='mb-5 text-lg text-gray-500 dark:text-gray-400'>
-              Are you sure you want to delete this post?
+              ¿Estás seguro de que quieres eliminar este comentario?
             </h3>
             <div className='flex justify-center gap-4'>
               <Button color='failure' onClick={handleDeletePost}>
-                Yes, I'm sure
+                Si, estoy seguro
               </Button>
               <Button color='gray' onClick={() => setShowModal(false)}>
-                No, cancel
+                No, cancelar
               </Button>
             </div>
           </div>

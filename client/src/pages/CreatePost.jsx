@@ -84,7 +84,7 @@ export default function CreatePost() {
   };
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen">
-      <h1 className="text-center text-3xl my-7 font-semibold">Create a post</h1>
+      <h1 className="text-center text-3xl my-7 font-semibold">Crear publicacion</h1>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4 sm:flex-row justify-between">
           <TextInput
@@ -102,10 +102,10 @@ export default function CreatePost() {
               setFormData({ ...formData, category: e.target.value })
             }
           >
-            <option value="uncategorized">Select a category</option>
-            <option value="javascript">JavaScript</option>
-            <option value="reactjs">React.js</option>
-            <option value="nextjs">Next.js</option>
+            <option value="uncategorized">Seleccionar categoria</option>
+            <option value="Seguridad">Seguridad</option>
+            <option value="Comodidad">Comodidad</option>
+            <option value="Eficiencia">Eficiencia</option>
           </Select>
         </div>
         <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">
@@ -130,7 +130,7 @@ export default function CreatePost() {
                 />
               </div>
             ) : (
-              "Upload Image"
+              "Subir imagen"
             )}
           </Button>
         </div>
@@ -144,7 +144,7 @@ export default function CreatePost() {
         )}
         <ReactQuill
           theme="snow"
-          placeholder="Write something..."
+          placeholder="Escribe algo..."
           className="h-72 mb-12"
           required
           onChange={(value) => {
@@ -152,7 +152,7 @@ export default function CreatePost() {
           }}
         />
         <Button type="submit" gradientDuoTone="purpleToPink">
-          Publish
+          Publicar
         </Button>
         {publishError && (
           <Alert className="mt-5" color="failure">

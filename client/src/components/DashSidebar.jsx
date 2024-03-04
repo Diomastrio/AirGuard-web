@@ -63,7 +63,7 @@ export default function DashSidebar() {
               labelColor='dark'
               as='div'
             >
-              Profile
+              Perfil
             </Sidebar.Item>
           </Link>
           {currentUser.isAdmin && (
@@ -73,7 +73,7 @@ export default function DashSidebar() {
                 icon={HiDocumentText}
                 as='div'
               >
-                Posts
+                Publicaciones
               </Sidebar.Item>
             </Link>
           )}
@@ -85,7 +85,7 @@ export default function DashSidebar() {
                   icon={HiOutlineUserGroup}
                   as='div'
                 >
-                  Users
+                  Usuarios
                 </Sidebar.Item>
               </Link>
               <Link to='/dashboard?tab=comments'>
@@ -94,7 +94,16 @@ export default function DashSidebar() {
                   icon={HiAnnotation}
                   as='div'
                 >
-                  Comments
+                  Commentarios
+                </Sidebar.Item>
+              </Link>
+              <Link to='/dashboard?tab=comments'>
+                <Sidebar.Item
+                  active={tab === 'comments'}
+                  icon={HiAnnotation}
+                  as='div'
+                >
+                  Commentarios
                 </Sidebar.Item>
               </Link>
             </>

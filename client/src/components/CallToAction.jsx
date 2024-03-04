@@ -14,7 +14,7 @@ export default function CallToAction() {
           className="rounded-tl-xl rounded-bl-none"
         >
           <a
-            href="https://www.100jsprojects.com"
+            href="https://es.linkedin.com/pulse/aplicaciones-innovadoras-del-iot-transformando"
             target="_blank"
             rel="noopener noreferrer"
           >

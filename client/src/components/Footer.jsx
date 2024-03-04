@@ -29,7 +29,7 @@ export default function FooterCom() {
               <Footer.Title title="Nosotros" />
               <Footer.LinkGroup col>
                 <Footer.Link
-                  href="https://www.100jsprojects.com"
+                  href="https://es.linkedin.com/pulse/aplicaciones-innovadoras-del-iot-transformando"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -78,7 +78,7 @@ export default function FooterCom() {
             <Footer.Icon href="#" icon={BsInstagram} />
             <Footer.Icon href="#" icon={BsTwitter} />
             <Footer.Icon
-              href="https://github.com/sahandghavidel"
+              href="https://github.com/diomastrio"
               icon={BsGithub}
             />
             <Footer.Icon href="#" icon={BsDribbble} />

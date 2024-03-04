@@ -129,10 +129,10 @@ export default function UpdatePost() {
             }
             value={formData.category}
           >
-            <option value='uncategorized'>Select a category</option>
-            <option value='javascript'>JavaScript</option>
-            <option value='reactjs'>React.js</option>
-            <option value='nextjs'>Next.js</option>
+            <option value='uncategorized'>Seleccionar categoria</option>
+            <option value="Seguridad">Seguridad</option>
+            <option value="Comodidad">Comodidad</option>
+            <option value="Eficiencia">Eficiencia</option>
           </Select>
         </div>
         <div className='flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3'>
@@ -172,7 +172,7 @@ export default function UpdatePost() {
         <ReactQuill
           theme='snow'
           value={formData.content}
-          placeholder='Write something...'
+          placeholder='Escribe algo...'
           className='h-72 mb-12'
           required
           onChange={(value) => {
@@ -180,7 +180,7 @@ export default function UpdatePost() {
           }}
         />
         <Button type='submit' gradientDuoTone='purpleToPink'>
-          Update post
+          Actualizar publicacion
         </Button>
         {publishError && (
           <Alert className='mt-5' color='failure'>

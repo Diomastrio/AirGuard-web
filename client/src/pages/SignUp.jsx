@@ -43,18 +43,16 @@ export default function SignUp() {
         {/* left */}
         <div className="flex-1">
           <Link to="/" className="font-bold dark:text-white text-4xl">
-            <span className="px-2 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white">
+            <span className="px-2 py-1 bg-gradient-to-r from-blue-950 via-teal-600 to-emerald-600 rounded-lg text-white">
               AirGuard
             </span>
             Empresa
           </Link>
           <p className="text-sm mt-5">
-            Puedes iniciar sesión con tu correo electrónico y contraseña o con
-            Google.
+            Puedes iniciar sesión con tu correo electrónico y contraseña.
           </p>
         </div>
         {/* right */}
-
         <div className="flex-1">
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <div>
@@ -70,7 +68,7 @@ export default function SignUp() {
               <Label value="tu correo" />
               <TextInput
                 type="email"
-                placeholder="name@company.com"
+                placeholder="ejemplo@email.com"
                 id="email"
                 onChange={handleChange}
               />
@@ -79,7 +77,7 @@ export default function SignUp() {
               <Label value="Tu contraseña" />
               <TextInput
                 type="password"
-                placeholder="Password"
+                placeholder="Contraseña"
                 id="password"
                 onChange={handleChange}
               />
@@ -98,7 +96,7 @@ export default function SignUp() {
                 "Registrarse"
               )}
             </Button>
-            <OAuth />
+            {/* <OAuth /> */}
           </form>
           <div className="flex gap-2 text-sm mt-5">
             <span>Tienes una cuenta?</span>

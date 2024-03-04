@@ -48,14 +48,13 @@ export default function SignIn() {
         {/* left */}
         <div className="flex-1">
           <Link to="/" className="font-bold dark:text-white text-4xl">
-            <span className="px-2 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white">
+            <span className="px-2 py-1 bg-gradient-to-r from-blue-950 via-teal-600 to-emerald-600 rounded-lg text-white">
               AirGuard
             </span>
             Empresa
           </Link>
           <p className="text-sm mt-5">
-            Puedes iniciar sesión con tu correo electrónico y contraseña o con
-            Google.
+            Puedes iniciar sesión con tu correo electrónico y contraseña.
           </p>
         </div>
         {/* right */}
@@ -94,12 +93,12 @@ export default function SignIn() {
                 "Iniciar session"
               )}
             </Button>
-            <OAuth />
+            {/* <OAuth /> */}
           </form>
           <div className="flex gap-2 text-sm mt-5">
-            <span>Dont Have an account?</span>
+            <span>No tienes una cuenta?</span>
             <Link to="/sign-up" className="text-blue-500">
-              Sign Up
+              Registrate
             </Link>
           </div>
           {errorMessage && (

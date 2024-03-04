@@ -250,14 +250,14 @@ export default function DashProfile() {
               gradientDuoTone="purpleToPink"
               className="w-full"
             >
-              Create a post
+              Crear una publicacion
             </Button>
           </Link>
         )}
       </form>
       <div className="text-red-500 flex justify-between mt-5">
         <span onClick={() => setShowModal(true)} className="cursor-pointer">
-          Delete Account
+          Borrar cuenta
         </span>
         <span onClick={handleSignout} className="cursor-pointer">
           Sign Out
