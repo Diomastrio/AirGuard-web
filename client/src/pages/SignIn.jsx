@@ -2,7 +2,7 @@ import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import OAuth from "../components/OAuth";
+// import OAuth from "../components/OAuth";
 import {
   signInFailure,
   signInStart,
@@ -51,7 +51,7 @@ export default function SignIn() {
             <span className="px-2 py-1 bg-gradient-to-r from-blue-950 via-teal-600 to-emerald-600 rounded-lg text-white">
               AirGuard
             </span>
-            Empresa
+            INC.
           </Link>
           <p className="text-sm mt-5">
             Puedes iniciar sesión con tu correo electrónico y contraseña.
