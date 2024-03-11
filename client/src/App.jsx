@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
+import Store from './pages/Store';
 import SignIn from './pages/SignIn';
 import Dashboard from './pages/Dashboard';
 import Projects from './pages/Projects';
@@ -14,9 +15,12 @@ import UpdatePost from './pages/UpdatePost';
 import PostPage from './pages/PostPage';
 import ScrollToTop from './components/ScrollToTop';
 import Search from './pages/Search';
-
+import Params from './pages/Params';
+import { initFlowbite } from 'flowbite';
 export default function App() {
+
   return (
+        initFlowbite(),
     <BrowserRouter>
       <ScrollToTop />
       <Header />
@@ -25,8 +29,10 @@ export default function App() {
         <Route path='/about' element={<About />} />
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/sign-up' element={<SignUp />} />
+        <Route path='/store' element={<Store />} />
         <Route path='/search' element={<Search />} />
         <Route element={<PrivateRoute />}>
+          <Route path='/params' element={<Params />} />
           <Route path='/dashboard' element={<Dashboard />} />
         </Route>
         <Route element={<OnlyAdminPrivateRoute />}>

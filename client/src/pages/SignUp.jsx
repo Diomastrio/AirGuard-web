@@ -1,7 +1,7 @@
 import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import OAuth from "../components/OAuth";
+// import OAuth from "../components/OAuth";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({});
@@ -59,13 +59,13 @@ export default function SignUp() {
               <Label value="Tu nombre de usuario" />
               <TextInput
                 type="text"
-                placeholder="Username"
+                placeholder="Nombre de usuario"
                 id="username"
                 onChange={handleChange}
               />
             </div>
             <div>
-              <Label value="tu correo" />
+              <Label value="Correo electronico" />
               <TextInput
                 type="email"
                 placeholder="ejemplo@email.com"
@@ -74,7 +74,7 @@ export default function SignUp() {
               />
             </div>
             <div>
-              <Label value="Tu contraseña" />
+              <Label value="Contraseña" />
               <TextInput
                 type="password"
                 placeholder="Contraseña"

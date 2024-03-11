@@ -11,7 +11,7 @@ export default function CallToAction() {
         </p>
         <Button
           gradientDuoTone="purpleToPink"
-          className="rounded-tl-xl rounded-bl-none"
+          className="rounded-tl-xl rounded-bl-none bg-gradient-to-r from-blue-950 via-teal-600 to-emerald-600 rounded-lg text-white"
         >
           <a
             href="https://es.linkedin.com/pulse/aplicaciones-innovadoras-del-iot-transformando"

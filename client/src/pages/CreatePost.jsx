@@ -120,7 +120,7 @@ export default function CreatePost() {
             size="sm"
             outline
             onClick={handleUpdloadImage}
-            disabled={imageUploadProgress}
+            disabled={!file || imageUploadProgress}
           >
             {imageUploadProgress ? (
               <div className="w-16 h-16">

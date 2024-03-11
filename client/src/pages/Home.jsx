@@ -19,7 +19,7 @@ export default function Home() {
     <div>
       <div className="flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto ">
         <h1 className="text-3xl font-bold lg:text-6xl">
-          Bienvenidos a AirGuard
+          Bienvenidos a  <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">AirGuard</span> 
         </h1>
         <p className="text-gray-500 text-xs sm:text-sm">
           Descubre como adquirir nuestros dispositivos de monitoreo y como

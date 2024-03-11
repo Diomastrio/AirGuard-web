@@ -58,7 +58,7 @@ export default function Header() {
         <span className="px-2 py-1 bg-gradient-to-r from-blue-950 via-teal-600 to-emerald-600 rounded-lg text-white">
           AirGuard
         </span>
-        Empresa
+        INC.
       </Link>
       <form onSubmit={handleSubmit}>
         <TextInput
@@ -120,6 +120,9 @@ export default function Header() {
         </Navbar.Link>
         <Navbar.Link active={path === "/projects"} as={"div"}>
           <Link to="/projects">Proyectos</Link>
+        </Navbar.Link>
+        <Navbar.Link active={path === "/store"} as={"div"}>
+          <Link to="/store">Comprar</Link>
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
