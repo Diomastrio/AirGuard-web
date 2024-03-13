@@ -2,6 +2,7 @@
 /* eslint-disable react/no-unknown-property */
 import React, { useState } from "react";
 import { initFlowbite } from "flowbite";
+import RadioWithToggleText from "./RadioInput";
 // Initialize Flowbite
 
 export default function RangeSlider() {
@@ -10,8 +11,9 @@ export default function RangeSlider() {
   const handleChange = (e) => {
     setTempValue(e.target.value);
   };
-  const [isGasActive, setIsGasActive] = useState(false);
+  const [isGasActive, setIsGasActive] = useState(true);
   const [isMovementActive, setIsMovementActive] = useState(true);
+  const [isRealMovementActive, setIsRealMovementActive] = useState(true);
 
   return (
     //description: "This is a simple range slider component that allows you to set the temperature, gas detection and movement detection."
@@ -78,8 +80,7 @@ export default function RangeSlider() {
             <strong className="font-medium text-gray-800 dark:text-white">
               Temperatura
             </strong>{" "}
-            Puedes ajustar el umbral el cual al ser sobrepasado te dara una
-            alerta.
+            Puedes ajustar el umbral el cual al ser sobrepasado dara una alerta.
           </p>
         </div>
         <div
@@ -138,6 +139,32 @@ export default function RangeSlider() {
               <div className="flex items-center space-x-3 rtl:space-x-reverse">
                 <span className="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
                   <span className="w-2 h-2 me-1 bg-green-500 rounded-full"></span>
+                  Sin riesgo
+                </span>
+              </div>
+            </li>
+          ) : (
+            <li className="py-3 sm:py-4">
+              <div className="flex items-center space-x-3 rtl:space-x-reverse">
+                <span className="inline-flex items-center bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
+                  <span className="w-2 h-2 me-1 bg-red-500 rounded-full"></span>
+                  Riesgo
+                </span>
+              </div>
+            </li>
+          )}
+        </ul>
+        <div className=" px-2"></div>
+        <h3 className="flex items-center ml-2">Movimiento</h3>
+        <ul
+          role="list"
+          className="max-w-sm ml-10 divide-y divide-gray-200 dark:divide-gray-700"
+        >
+          {isMovementActive ? (
+            <li className="py-3 sm:py-4">
+              <div className="flex items-center space-x-3 rtl:space-x-reverse">
+                <span className="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                  <span className="w-2 h-2 me-1 bg-green-500 rounded-full"></span>
                   Activo
                 </span>
               </div>
@@ -152,14 +179,46 @@ export default function RangeSlider() {
               </div>
             </li>
           )}
+          <RadioWithToggleText />
         </ul>
-        <div className=" px-2"></div>
+      </div>
+      <hr className="w-full my-6 border-gray-200 dark:border-gray-700" />
+      <div className="flex flex-wrap justify-between">
+        <h3 className="flex items-center ml-2">Temperatura actual</h3>
+
+        <ul
+          role="list"
+          className="max-w-sm ml-10 divide-y divide-gray-200 dark:divide-gray-700"
+        >
+          <li className="py-3 sm:py-4">
+            <div className="flex items-center space-x-3 rtl:space-x-reverse">
+              <span className="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                <span className="w-2 h-2 me-1 bg-green-500 rounded-full"></span>
+                24°C
+              </span>
+            </div>
+          </li>
+        </ul>
+        <h3 className="flex items-center ml-2">Humedad actual</h3>
+        <ul
+          role="list"
+          className="max-w-sm ml-10 divide-y divide-gray-200 dark:divide-gray-700"
+        >
+          <li className="py-3 sm:py-4">
+            <div className="flex items-center space-x-3 rtl:space-x-reverse">
+              <span className="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                <span className="w-2 h-2 me-1 bg-yellow-500 rounded-full"></span>
+                18%
+              </span>
+            </div>
+          </li>
+        </ul>
         <h3 className="flex items-center ml-2">Movimiento</h3>
         <ul
           role="list"
           className="max-w-sm ml-10 divide-y divide-gray-200 dark:divide-gray-700"
         >
-          {isMovementActive ? (
+          {isRealMovementActive ? (
             <li className="py-3 sm:py-4">
               <div className="flex items-center space-x-3 rtl:space-x-reverse">
                 <span className="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
