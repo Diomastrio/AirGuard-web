@@ -260,7 +260,7 @@ export default function DashProfile() {
           Borrar cuenta
         </span>
         <span onClick={handleSignout} className="cursor-pointer">
-          Salir
+          Cerrar sesión
         </span>
       </div>
       {updateUserSuccess && (
