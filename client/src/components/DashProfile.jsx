@@ -168,7 +168,7 @@ export default function DashProfile() {
   };
   return (
     <div className="max-w-lg mx-auto p-3 w-full">
-      <h1 className="my-7 text-center font-semibold text-3xl">Profile</h1>
+      <h1 className="my-7 text-center font-semibold text-3xl">Perfil</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           type="file"
@@ -218,21 +218,21 @@ export default function DashProfile() {
         <TextInput
           type="text"
           id="username"
-          placeholder="username"
+          placeholder="nombre de usuario"
           defaultValue={currentUser.username}
           onChange={handleChange}
         />
         <TextInput
           type="email"
           id="email"
-          placeholder="email"
+          placeholder="correo electronico"
           defaultValue={currentUser.email}
           onChange={handleChange}
         />
         <TextInput
           type="password"
           id="password"
-          placeholder="password"
+          placeholder="contraseña"
           onChange={handleChange}
         />
         <Button
@@ -241,7 +241,7 @@ export default function DashProfile() {
           outline
           disabled={loading || imageFileUploading}
         >
-          {loading ? "Loading..." : "Update"}
+          {loading ? "Loading..." : "Actualizar"}
         </Button>
         {currentUser.isAdmin && (
           <Link to={"/create-post"}>
@@ -260,7 +260,7 @@ export default function DashProfile() {
           Borrar cuenta
         </span>
         <span onClick={handleSignout} className="cursor-pointer">
-          Sign Out
+          Salir
         </span>
       </div>
       {updateUserSuccess && (

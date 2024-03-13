@@ -183,13 +183,12 @@ export default function RangeSlider() {
         </ul>
       </div>
       <hr className="w-full my-6 border-gray-200 dark:border-gray-700" />
-      <div className="flex flex-wrap justify-between">
-        <h3 className="flex items-center ml-2">Temperatura actual</h3>
-
+      <div className="flex flex-wrap justify-between pr-10">
         <ul
           role="list"
           className="max-w-sm ml-10 divide-y divide-gray-200 dark:divide-gray-700"
         >
+          <h3 className="flex items-center ml-2">Temperatura actual</h3>
           <li className="py-3 sm:py-4">
             <div className="flex items-center space-x-3 rtl:space-x-reverse">
               <span className="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
@@ -199,11 +198,11 @@ export default function RangeSlider() {
             </div>
           </li>
         </ul>
-        <h3 className="flex items-center ml-2">Humedad actual</h3>
         <ul
           role="list"
           className="max-w-sm ml-10 divide-y divide-gray-200 dark:divide-gray-700"
         >
+          <h3 className="flex items-center ml-2">Humedad actual</h3>
           <li className="py-3 sm:py-4">
             <div className="flex items-center space-x-3 rtl:space-x-reverse">
               <span className="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
@@ -213,11 +212,11 @@ export default function RangeSlider() {
             </div>
           </li>
         </ul>
-        <h3 className="flex items-center ml-2">Movimiento</h3>
         <ul
           role="list"
           className="max-w-sm ml-10 divide-y divide-gray-200 dark:divide-gray-700"
         >
+          <h3 className="flex items-center ml-2">Movimiento</h3>
           {isRealMovementActive ? (
             <li className="py-3 sm:py-4">
               <div className="flex items-center space-x-3 rtl:space-x-reverse">
