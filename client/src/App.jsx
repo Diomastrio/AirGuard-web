@@ -17,6 +17,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Search from "./pages/Search";
 import Params from "./pages/Params";
 import { initFlowbite } from "flowbite";
+import OnlyClientPrivateRoute from "./components/OnlyClientPrivateRoute";
 export default function App() {
   return (
     initFlowbite(),
@@ -32,8 +33,10 @@ export default function App() {
           <Route path="/store" element={<Store />} />
           <Route path="/search" element={<Search />} />
           <Route element={<PrivateRoute />}>
-            <Route path="/params" element={<Params />} />
             <Route path="/dashboard" element={<Dashboard />} />
+          </Route>
+          <Route element={<OnlyClientPrivateRoute />}>
+            <Route path="/params" element={<Params />} />
           </Route>
           <Route element={<OnlyAdminPrivateRoute />}>
             <Route path="/create-post" element={<CreatePost />} />

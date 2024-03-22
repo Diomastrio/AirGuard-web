@@ -13,7 +13,7 @@ export default function Comprar() {
           AirGuardian-1
         </h5>
         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-          Manten el control y la seguridad.
+          Estas listo para mantener el control y la seguridad de tu habitacion?
         </p>
         <Link to={"/params"}>
           <Button
@@ -21,7 +21,7 @@ export default function Comprar() {
             className="rounded-tl-xl rounded-bl-none bg-gradient-to-r from-blue-950 via-teal-600 to-emerald-600 rounded-lg text-white"
             style={{ width: "fit-content" }} // Add this line to make the button less wide
           >
-            Comprar ahora
+            Utilizar servicio de monitoreo
           </Button>
         </Link>
       </div>

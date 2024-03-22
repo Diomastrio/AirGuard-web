@@ -3,13 +3,43 @@
 import React, { useState } from "react";
 import { initFlowbite } from "flowbite";
 import RadioWithToggleText from "./RadioInput";
-// Initialize Flowbite
+import mqtt from "mqtt";
 
 export default function RangeSlider() {
   initFlowbite();
+  const client = mqtt.connect("broker.hivemq.com:8883");
+
+  client.on("connect", () => {
+    console.log("Connectado al MQTT broker");
+
+    client.on("error", (err) => {
+      console.error("Connection error:", err);
+      // Implement error handling logic here
+    });
+
+    // Subscribe to a topic
+    client.subscribe("/temperatura", (err) => {
+      if (err) {
+        console.error("Ha fallado la suscripcion al topic", err);
+      } else {
+        console.log("Se ha suscrito al topic exitosamente");
+      }
+    });
+  });
+
+  // Listen for messages
+  client.on("message", (topic, message) => {
+    // message is a Buffer
+    console.log(`Received message on ${topic}: ${message.toString()}`);
+  });
+
   const [temp, setTempValue] = useState(24);
+  // const handleChange = (e) => {
+  //   setTempValue(e.target.value);
+  // };
   const handleChange = (e) => {
     setTempValue(e.target.value);
+    client.publish("temperature", e.target.value.toString());
   };
   const [isGasActive, setIsGasActive] = useState(true);
   const [isMovementActive, setIsMovementActive] = useState(true);

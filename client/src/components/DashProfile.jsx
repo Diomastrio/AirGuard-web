@@ -35,6 +35,8 @@ export default function DashProfile() {
   const [updateUserSuccess, setUpdateUserSuccess] = useState(null);
   const [updateUserError, setUpdateUserError] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [showModal1, setShowModal1] = useState(false);
+
   const [formData, setFormData] = useState({});
   const filePickerRef = useRef();
   const dispatch = useDispatch();
@@ -152,6 +154,7 @@ export default function DashProfile() {
   };
 
   const handleSignout = async () => {
+    setShowModal1(false);
     try {
       const res = await fetch("/api/user/signout", {
         method: "POST",
@@ -259,7 +262,7 @@ export default function DashProfile() {
         <span onClick={() => setShowModal(true)} className="cursor-pointer">
           Borrar cuenta
         </span>
-        <span onClick={handleSignout} className="cursor-pointer">
+        <span onClick={() => setShowModal1(true)} className="cursor-pointer">
           Cerrar sesión
         </span>
       </div>
@@ -278,6 +281,7 @@ export default function DashProfile() {
           {error}
         </Alert>
       )}
+
       <Modal
         show={showModal}
         onClose={() => setShowModal(false)}
@@ -296,6 +300,31 @@ export default function DashProfile() {
                 Sí, borrar
               </Button>
               <Button color="gray" onClick={() => setShowModal(false)}>
+                No, cancelar
+              </Button>
+            </div>
+          </div>
+        </Modal.Body>
+      </Modal>
+
+      <Modal
+        show={showModal1}
+        onClose={() => setShowModal1(false)}
+        popup
+        size="md"
+      >
+        <Modal.Header />
+        <Modal.Body>
+          <div className="text-center">
+            <HiOutlineExclamationCircle className="h-14 w-14 text-gray-400 dark:text-gray-200 mb-4 mx-auto" />
+            <h3 className="mb-5 text-lg text-gray-500 dark:text-gray-400">
+              Esta seguro de que desea cerrar sesion?
+            </h3>
+            <div className="flex justify-center gap-4">
+              <Button color="failure" onClick={handleSignout}>
+                Sí, salir
+              </Button>
+              <Button color="gray" onClick={() => setShowModal1(false)}>
                 No, cancelar
               </Button>
             </div>
