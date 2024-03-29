@@ -1,36 +1,29 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unknown-property */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { initFlowbite } from "flowbite";
 import RadioWithToggleText from "./RadioInput";
-import mqtt from "mqtt";
+import client from "../services/connection";
+
 export default function RangeSlider() {
   initFlowbite();
-  // const clientId = "emqx_react_" + Math.random().toString(16).substring(2, 8);
-  const clientId = "mqttx_11095452";
-  const username = "andy";
-  const password = "12345678";
+  const [message, setMessage] = useState(null);
 
-  const options = {
-    protocol: "ws", // Use WebSocket
-    host: "broker.emqx.io",
-    port: 8083, // WebSocket port
-    clientId,
-    username,
-    password,
-  };
+  useEffect(() => {
+    client.on("connect", () => {
+      client.subscribe("/temperatura");
+    });
 
-  const client = mqtt.connect(options);
+    client.on("message", (topic, message) => {
+      setMessage(message.toString());
+    });
 
-  // Handle connection events
-  client.on("connect", () => {
-    console.log("Connected to MQTT broker");
-    // Subscribe to topics or publish messages here
-  });
+    return () => {
+      client.off("message");
+      client.end();
+    };
+  }, []);
 
-  client.on("error", (error) => {
-    console.error("Error connecting to MQTT broker:", error);
-  });
   const [temp, setTempValue] = useState(24);
   const handleChange = (e) => {
     setTempValue(e.target.value);
