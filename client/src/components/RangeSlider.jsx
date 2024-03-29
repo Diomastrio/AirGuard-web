@@ -1,28 +1,29 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unknown-property */
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { initFlowbite } from "flowbite";
 import RadioWithToggleText from "./RadioInput";
 import client from "../services/connection";
 
 export default function RangeSlider() {
   initFlowbite();
-  const [message, setMessage] = useState(null);
+  const topic = "testtopic/1";
 
-  useEffect(() => {
-    client.on("connect", () => {
-      client.subscribe("/temperatura");
-    });
+  const useMqttSub = (subscription) => {
+    const [isSub, setIsSub] = useState(false); // Define 'isSub' state variable
 
-    client.on("message", (topic, message) => {
-      setMessage(message.toString());
-    });
-
-    return () => {
-      client.off("message");
-      client.end();
-    };
-  }, []);
+    if (client) {
+      const { topic, qos } = subscription;
+      client.subscribe(topic, { qos }, (error) => {
+        if (error) {
+          console.log("Subscribe to topics error", error);
+          return;
+        }
+        console.log(`Subscribe to topics: ${topic}`);
+        setIsSub(true); // Update 'isSub' state
+      });
+    }
+  };
 
   const [temp, setTempValue] = useState(24);
   const handleChange = (e) => {

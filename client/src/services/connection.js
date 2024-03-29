@@ -1,16 +1,16 @@
 import mqtt from "mqtt";
 
-const clientId = "mqttx_4f1cc386";
-const Username = "andy";
-const Password = "andy6060";
+const clientId = "emqx_cloud16e1fe";
+const username = "andy";
+const password = "andy6060";
 const options = {
   protocol: "wss", // Use WebSocket
   port: 8084, // WebSocket port
-  host: "broker.emqx.io", // Ensure correct address
-  path: "/mqtt",
+  host: "m99119d9.ala.us-east-1.emqxsl.com", // Ensure correct address
+  // path: "/mqtt",
   clientId,
-  Username,
-  Password,
+  username,
+  password,
 };
 
 const client = mqtt.connect(options); // Connect to EMQX broker
@@ -34,3 +34,13 @@ client.on("error", (error) => {
 });
 
 export default client;
+
+// const clientId = "emqx_cloud16e1fe";
+// const username = "andy";
+// const password = "andy6060";
+// const client = mqtt.connect("ws://broker.emqx.io:8083/mqtt", {
+//   clientId,
+//   username,
+//   password,
+//   // ...other options
+// });
