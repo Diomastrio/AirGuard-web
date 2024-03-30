@@ -3,36 +3,15 @@
 import React, { useState } from "react";
 import { initFlowbite } from "flowbite";
 import RadioWithToggleText from "./RadioInput";
-import client from "../services/connection";
 
 export default function RangeSlider() {
   initFlowbite();
-  const topic = "testtopic/1";
-
-  const useMqttSub = (subscription) => {
-    const [isSub, setIsSub] = useState(false); // Define 'isSub' state variable
-
-    if (client) {
-      const { topic, qos } = subscription;
-      client.subscribe(topic, { qos }, (error) => {
-        if (error) {
-          console.log("Subscribe to topics error", error);
-          return;
-        }
-        console.log(`Subscribe to topics: ${topic}`);
-        setIsSub(true); // Update 'isSub' state
-      });
-    }
-  };
 
   const [temp, setTempValue] = useState(24);
   const handleChange = (e) => {
     setTempValue(e.target.value);
   };
-  // const handleChange = (e) => {
-  //   setTempValue(e.target.value);
-  //   client.publish("/temperatura", e.target.value.toString());
-  // };
+
   const [isGasActive, setIsGasActive] = useState(true);
   const [isMovementActive, setIsMovementActive] = useState(true);
   const [isRealMovementActive, setIsRealMovementActive] = useState(true);
@@ -204,7 +183,9 @@ export default function RangeSlider() {
           <RadioWithToggleText />
         </ul>
       </div>
-      <hr className="w-full my-6 border-gray-200 dark:border-gray-700" />
+      <hr className="w-full my-6 h-6 border-width-2 border-gray-700 dark:border-gray-200" />
+      <span className="text-gray-700 dark:text-white pb-3">Estado actual</span>
+      <hr className="w-full my-6 h-2 border-gray-200 dark:border-gray-700" />
       <div className="flex flex-wrap justify-between pr-10">
         <ul
           role="list"
