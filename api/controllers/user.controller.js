@@ -1,36 +1,53 @@
-import bcryptjs from 'bcryptjs';
-import { errorHandler } from '../utils/error.js';
-import User from '../models/user.model.js';
+import bcryptjs from "bcryptjs";
+import { errorHandler } from "../utils/error.js";
+import User from "../models/user.model.js";
 
 export const test = (req, res) => {
-  res.json({ message: 'API is working!' });
+  res.json({ message: "API is working!" });
 };
 
 export const updateUser = async (req, res, next) => {
   if (req.user.id !== req.params.userId) {
-    return next(errorHandler(403, 'You are not allowed to update this user'));
+    return next(
+      errorHandler(403, "No estas autorizado para editar este usuario")
+    );
   }
   if (req.body.password) {
     if (req.body.password.length < 6) {
-      return next(errorHandler(400, 'Password must be at least 6 characters'));
+      return next(
+        errorHandler(400, "La contraseña debe tener al menos 6 caracteres")
+      );
     }
     req.body.password = bcryptjs.hashSync(req.body.password, 10);
   }
   if (req.body.username) {
     if (req.body.username.length < 7 || req.body.username.length > 20) {
       return next(
-        errorHandler(400, 'Username must be between 7 and 20 characters')
+        errorHandler(
+          400,
+          "El nombre de usuario debe tener entre 7 y 20 caracteres"
+        )
       );
     }
-    if (req.body.username.includes(' ')) {
-      return next(errorHandler(400, 'Username cannot contain spaces'));
+    if (req.body.username.includes(" ")) {
+      return next(
+        errorHandler(400, "Nombre de usuario no puede contener espacios")
+      );
     }
     if (req.body.username !== req.body.username.toLowerCase()) {
-      return next(errorHandler(400, 'Username must be lowercase'));
+      return next(
+        errorHandler(
+          400,
+          "La mayúscula no está permitida en el nombre de usuario"
+        )
+      );
     }
     if (!req.body.username.match(/^[a-zA-Z0-9]+$/)) {
       return next(
-        errorHandler(400, 'Username can only contain letters and numbers')
+        errorHandler(
+          400,
+          "El nombre de usuario solo puede contener letras y números"
+        )
       );
     }
   }
@@ -56,11 +73,13 @@ export const updateUser = async (req, res, next) => {
 
 export const deleteUser = async (req, res, next) => {
   if (!req.user.isAdmin && req.user.id !== req.params.userId) {
-    return next(errorHandler(403, 'You are not allowed to delete this user'));
+    return next(
+      errorHandler(403, "No estas autorizado para eliminar este usuario")
+    );
   }
   try {
     await User.findByIdAndDelete(req.params.userId);
-    res.status(200).json('User has been deleted');
+    res.status(200).json("Usuario eliminado correctamente");
   } catch (error) {
     next(error);
   }
@@ -69,9 +88,9 @@ export const deleteUser = async (req, res, next) => {
 export const signout = (req, res, next) => {
   try {
     res
-      .clearCookie('access_token')
+      .clearCookie("access_token")
       .status(200)
-      .json('User has been signed out');
+      .json("Usuario desconectado correctamente");
   } catch (error) {
     next(error);
   }
@@ -79,12 +98,14 @@ export const signout = (req, res, next) => {
 
 export const getUsers = async (req, res, next) => {
   if (!req.user.isAdmin) {
-    return next(errorHandler(403, 'You are not allowed to see all users'));
+    return next(
+      errorHandler(403, "No estas autorizado para ver todos los usuarios")
+    );
   }
   try {
     const startIndex = parseInt(req.query.startIndex) || 0;
     const limit = parseInt(req.query.limit) || 9;
-    const sortDirection = req.query.sort === 'asc' ? 1 : -1;
+    const sortDirection = req.query.sort === "asc" ? 1 : -1;
 
     const users = await User.find()
       .sort({ createdAt: sortDirection })
@@ -123,7 +144,7 @@ export const getUser = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.userId);
     if (!user) {
-      return next(errorHandler(404, 'User not found'));
+      return next(errorHandler(404, "Usuario no encontrado"));
     }
     const { password, ...rest } = user._doc;
     res.status(200).json(rest);

@@ -3,10 +3,17 @@ import { errorHandler } from "../utils/error.js";
 
 export const create = async (req, res, next) => {
   if (!req.user.isAdmin) {
-    return next(errorHandler(403, "You are not allowed to create a post"));
+    return next(
+      errorHandler(403, "No estas autorizado para crear una publicación")
+    );
   }
   if (!req.body.title || !req.body.content) {
-    return next(errorHandler(400, "Please provide all required fields"));
+    return next(
+      errorHandler(
+        400,
+        "Porfavor ingresa un titulo y contenido para la publicación"
+      )
+    );
   }
   const slug = req.body.title
     .split(" ")
@@ -73,11 +80,13 @@ export const getposts = async (req, res, next) => {
 
 export const deletepost = async (req, res, next) => {
   if (!req.user.isAdmin || req.user.id !== req.params.userId) {
-    return next(errorHandler(403, "You are not allowed to delete this post"));
+    return next(
+      errorHandler(403, "No estas autorizado para eliminar esta publicación")
+    );
   }
   try {
     await Post.findByIdAndDelete(req.params.postId);
-    res.status(200).json("The post has been deleted");
+    res.status(200).json("Publicación eliminada correctamente");
   } catch (error) {
     next(error);
   }
@@ -85,7 +94,9 @@ export const deletepost = async (req, res, next) => {
 
 export const updatepost = async (req, res, next) => {
   if (!req.user.isAdmin || req.user.id !== req.params.userId) {
-    return next(errorHandler(403, "You are not allowed to update this post"));
+    return next(
+      errorHandler(403, "No estas autorizado para editar esta publicación")
+    );
   }
   try {
     const updatedPost = await Post.findByIdAndUpdate(
