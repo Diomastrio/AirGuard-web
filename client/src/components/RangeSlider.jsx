@@ -3,7 +3,18 @@
 import React, { useState } from "react";
 import { initFlowbite } from "flowbite";
 import RadioWithToggleText from "./RadioInput";
+import client from "../services/connection";
+client.on("connect", () => {
+  console.log("Connected to MQTT broker");
+  client.subscribe("temp");
+});
 
+client.on("message", (topic, message) => {
+  if (topic === "temp") {
+    // Handle the received message here
+    console.log("Received message:", message.toString());
+  }
+});
 export default function RangeSlider() {
   initFlowbite();
 
