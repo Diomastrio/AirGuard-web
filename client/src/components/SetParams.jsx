@@ -129,6 +129,7 @@ export default function SetParams() {
           backgroundImage: `linear-gradient(to right, #4299e1 0%, #4299e1 ${0}%, #d1d5db ${temp}%, #d1d5db 100%)`,
         }}
       />
+      <div className=" pb-6"></div>
       {/* description: below is the way of figuring if there is gas detected and movement */}
       <h3 className="flex items-center mr-4">Gas</h3>
       <span className="text-gray-700 dark:text-white pb-3">{gasNum} ppm</span>
@@ -144,34 +145,10 @@ export default function SetParams() {
         }}
       />
       <div className=" pb-6"></div>
+      <h3 className="flex items-center ml-2">Movimiento</h3>
+      <div className=" pb-6"></div>
       <div className="flex flex-wrap justify-between">
         <div className=" px-2"></div>
-        <h3 className="flex items-center ml-2">Movimiento</h3>
-        <ul
-          role="list"
-          className="max-w-sm ml-10 divide-y divide-gray-200 dark:divide-gray-700"
-        >
-          {isMovementActive ? (
-            <li className="py-3 sm:py-4">
-              <div className="flex items-center space-x-3 rtl:space-x-reverse">
-                <span className="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
-                  <span className="w-2 h-2 me-1 bg-green-500 rounded-full"></span>
-                  Activo
-                </span>
-              </div>
-            </li>
-          ) : (
-            <li className="py-3 sm:py-4">
-              <div className="flex items-center space-x-3 rtl:space-x-reverse">
-                <span className="inline-flex items-center bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
-                  <span className="w-2 h-2 me-1 bg-red-500 rounded-full"></span>
-                  Inactivo
-                </span>
-              </div>
-            </li>
-          )}
-          <RadioWithToggleText />
-        </ul>
         <div className="flex px-2">
           <button
             type="button"

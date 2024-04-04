@@ -11,19 +11,19 @@ export default function About() {
               Bienvenido a AirGuard, una solución IoT de vanguardia diseñada
               para revolucionar su entorno interior. Nuestro proyecto innovador
               emplea sensores avanzados para mejorar su comodidad y seguridad.
-              El sensor de infrarrojos detecta de forma inteligente la presencia
-              del usuario, garantizando un control óptimo de su entorno. Cuando
-              se combina con un sensor de termómetro preciso, AirGuard no solo
-              monitorea la temperatura ambiente sino que también identifica
-              anomalías y le alerta si los sistemas de calefacción o
-              refrigeración se han dejado activos. Este enfoque proactivo no
-              sólo ahorra energía sino que también garantiza su comodidad.
+              El sensor ultrasonico detecta la presencia del usuario,
+              garantizando un control óptimo de su entorno. Cuando se combina
+              con un sensor de temperatura preciso, AirGuard no solo monitorea
+              la temperatura ambiente sino que también identifica anomalías y le
+              alerta si los sistemas de calefacción o refrigeración se han
+              dejado activos. Este enfoque proactivo no sólo ahorra energía sino
+              que también garantiza su comodidad.
             </p>
 
             <p>
               Pero AirGuard no se detiene ahí. Priorizamos tu bienestar con un
-              sensor de calidad del aire integrado. Esta característica va más
-              allá de los sistemas convencionales al analizar continuamente la
+              sensor de humo y gas integrado. Esta característica va más allá de
+              los sistemas convencionales al analizar continuamente la
               composición del aire. Si se detecta alguna contaminación, nuestro
               sistema le notifica de inmediato a través de una aplicación fácil
               de usar, lo que le ofrece tranquilidad y fomenta un entorno más
