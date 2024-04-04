@@ -18,6 +18,10 @@ import Search from "./pages/Search";
 import Params from "./pages/Params";
 import { initFlowbite } from "flowbite";
 import OnlyClientPrivateRoute from "./components/OnlyClientPrivateRoute";
+// import toast from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
+// toast.configure();
+
 export default function App() {
   return (
     initFlowbite(),

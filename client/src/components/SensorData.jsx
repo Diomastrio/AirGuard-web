@@ -13,7 +13,9 @@ export default function SensorData() {
   const [humidity, setHumidity] = useState(null);
   const [isGasActive, setIsGasActive] = useState(null);
   const [isMovementActive, setIsMovementActive] = useState(null);
-
+  const [tempAlert, setTempAlert] = useState(null);
+  const [gasAlert, setGasAlert] = useState(null);
+  // valores de temperatura entrada y salida
   useEffect(() => {
     client.on("message", (topic, message) => {
       if (topic === "/airguard/temp") {
@@ -23,15 +25,31 @@ export default function SensorData() {
   }, []);
   useEffect(() => {
     client.on("message", (topic, message) => {
+      if (topic === "/airguard/temp/alert") {
+        setTempAlert(message.toString());
+      }
+    });
+  }, []);
+  // valores de humedad entrada y salida
+  useEffect(() => {
+    client.on("message", (topic, message) => {
       if (topic === "/airguard/humidity") {
         setHumidity(message.toString());
       }
     });
   }, []);
+  // valores de movimiento y gas entrada y salida
   useEffect(() => {
     client.on("message", (topic, message) => {
       if (topic === "/airguard/gas-humo") {
         setIsGasActive(message.toString());
+      }
+    });
+  }, []);
+  useEffect(() => {
+    client.on("message", (topic, message) => {
+      if (topic === "/airguard/humo-gas/alert") {
+        setGasAlert(message.toString());
       }
     });
   }, []);
@@ -44,7 +62,7 @@ export default function SensorData() {
   }, []);
 
   return (
-    <div className="w-1/2 mx-auto my-8 p-8 flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow dark:border-gray-700 dark:bg-gray-800 ">
+    <div className="w-1/2 mx-auto my-8 p-6 flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow dark:border-gray-700 dark:bg-gray-800 ">
       <span className="text-gray-700 dark:text-white pb-3">Estado actual</span>
       <hr className="w-full my-6 h-2 border-gray-200 dark:border-gray-700" />
       <div className="flex flex-wrap justify-between pr-10">
@@ -58,6 +76,9 @@ export default function SensorData() {
               <span className="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
                 <span className="w-2 h-2 me-1 bg-green-500 rounded-full"></span>
                 {temp ? `${temp}°C` : "Cargando..."}
+              </span>
+              <span className="inline-flex items-center bg-fuchsia-200 text-teal-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-green-300">
+                {tempAlert ? `${tempAlert}` : "Estable..."}
               </span>
             </div>
           </li>
@@ -100,6 +121,9 @@ export default function SensorData() {
               <span className="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
                 <span className="w-2 h-2 me-1 bg-yellow-500 rounded-full"></span>
                 {isGasActive ? `${isGasActive}` : "Cargando..."}
+              </span>
+              <span className="inline-flex items-center bg-fuchsia-200 text-teal-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-green-300">
+                {gasAlert ? `${gasAlert}` : "Estable..."}
               </span>
             </div>
           </li>

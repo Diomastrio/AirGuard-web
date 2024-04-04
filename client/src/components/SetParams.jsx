@@ -3,8 +3,9 @@
 import React, { useState } from "react";
 import { initFlowbite } from "flowbite";
 import RadioWithToggleText from "./RadioInput";
-// import client from "../services/connection";
-
+import client from "../services/connection";
+// import { toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 export default function SetParams() {
   initFlowbite();
 
@@ -12,12 +13,14 @@ export default function SetParams() {
   const handleChange = (e) => {
     setTempValue(e.target.value);
   };
-
-  const [isGasActive, setIsGasActive] = useState(true);
+  const [gasNum, setGasNum] = useState(20);
+  const handleGasChange = (e) => {
+    setGasNum(e.target.value);
+  };
   const [isMovementActive, setIsMovementActive] = useState(true);
 
   return (
-    //description: "This is a simple range slider component that allows you to set the temperature, gas detection and movement detection."
+    //descripción: "Este es un componente deslizante de rango simple que le permite configurar la temperatura, la detección de gas y la detección de movimiento".
     <div className="w-1/2 mx-auto my-8 p-8 flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow dark:border-gray-700 dark:bg-gray-800 ">
       <div className="mb-4 border-b border-gray-200 dark:border-gray-700">
         <ul
@@ -126,35 +129,22 @@ export default function SetParams() {
           backgroundImage: `linear-gradient(to right, #4299e1 0%, #4299e1 ${0}%, #d1d5db ${temp}%, #d1d5db 100%)`,
         }}
       />
-      <span className="text-gray-700"> </span>
       {/* description: below is the way of figuring if there is gas detected and movement */}
+      <h3 className="flex items-center mr-4">Gas</h3>
+      <span className="text-gray-700 dark:text-white pb-3">{gasNum} ppm</span>
+      <input
+        type="range"
+        min="0"
+        max="100"
+        value={gasNum}
+        onChange={handleGasChange}
+        className="mx-4 w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer"
+        style={{
+          backgroundImage: `linear-gradient(to right, #4299e1 0%, #4299e1 ${0}%, #d1d5db ${gasNum}%, #d1d5db 100%)`,
+        }}
+      />
       <div className=" pb-6"></div>
       <div className="flex flex-wrap justify-between">
-        <h3 className="flex items-center mr-4">Gas</h3>
-        <ul
-          role="list"
-          className="max-w-sm mr-30 divide-y divide-gray-200 dark:divide-gray-700"
-        >
-          {isGasActive ? (
-            <li className="py-3 sm:py-4">
-              <div className="flex items-center space-x-3 rtl:space-x-reverse">
-                <span className="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
-                  <span className="w-2 h-2 me-1 bg-green-500 rounded-full"></span>
-                  Sin riesgo
-                </span>
-              </div>
-            </li>
-          ) : (
-            <li className="py-3 sm:py-4">
-              <div className="flex items-center space-x-3 rtl:space-x-reverse">
-                <span className="inline-flex items-center bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
-                  <span className="w-2 h-2 me-1 bg-red-500 rounded-full"></span>
-                  Riesgo
-                </span>
-              </div>
-            </li>
-          )}
-        </ul>
         <div className=" px-2"></div>
         <h3 className="flex items-center ml-2">Movimiento</h3>
         <ul
@@ -182,12 +172,38 @@ export default function SetParams() {
           )}
           <RadioWithToggleText />
         </ul>
-        <button
-          type="button"
-          className="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-        >
-          Establecer parámetros
-        </button>
+        <div className="flex px-2">
+          <button
+            type="button"
+            className="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+            onClick={() => {
+              // Use the MQTT client to publish a message to the "/airguard/set/temp" topic with the `temp` constant as the payload
+              client.publish("/airguard/set/temp/max", temp.toString());
+            }}
+          >
+            Establecer Temperatura
+          </button>
+          <button
+            type="button"
+            className="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+            onClick={() => {
+              // Use the MQTT client to publish a message to the "/airguard/set/gas" topic with the `isGasActive` constant as the payload
+              client.publish("/airguard/set/humo-gas", gasNum.toString());
+            }}
+          >
+            Establecer Gas
+          </button>
+          <button
+            type="button"
+            className="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+            onClick={() => {
+              const message = "setDistance"; // replace with your actual message
+              client.publish("/airguard/set/movement", message);
+            }}
+          >
+            Establecer Movimiento
+          </button>
+        </div>
       </div>
     </div>
   );
