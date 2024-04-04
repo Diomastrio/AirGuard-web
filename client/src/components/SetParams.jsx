@@ -3,19 +3,18 @@
 import React, { useState } from "react";
 import { initFlowbite } from "flowbite";
 import RadioWithToggleText from "./RadioInput";
-import client from "../services/connection";
-client.on("connect", () => {
-  console.log("Connected to MQTT broker");
-  client.subscribe("temp");
-});
+// import client from "../services/connection";
+// client.on("connect", () => {
+//   console.log("Connected to MQTT broker");
+//   client.subscribe("/airguard/temp");
+// });
 
-client.on("message", (topic, message) => {
-  if (topic === "temp") {
-    // Handle the received message here
-    console.log("Received message:", message.toString());
-  }
-});
-export default function RangeSlider() {
+// client.on("message", (topic, message) => {
+//   if (topic === "/airguard/temp") {
+//     console.log("Received message:", message.toString());
+//   }
+// });
+export default function SetParams() {
   initFlowbite();
 
   const [temp, setTempValue] = useState(24);
@@ -25,7 +24,6 @@ export default function RangeSlider() {
 
   const [isGasActive, setIsGasActive] = useState(true);
   const [isMovementActive, setIsMovementActive] = useState(true);
-  const [isRealMovementActive, setIsRealMovementActive] = useState(true);
 
   return (
     //description: "This is a simple range slider component that allows you to set the temperature, gas detection and movement detection."
@@ -186,70 +184,12 @@ export default function RangeSlider() {
               <div className="flex items-center space-x-3 rtl:space-x-reverse">
                 <span className="inline-flex items-center bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
                   <span className="w-2 h-2 me-1 bg-red-500 rounded-full"></span>
-                  Desactivo
+                  Inactivo
                 </span>
               </div>
             </li>
           )}
           <RadioWithToggleText />
-        </ul>
-      </div>
-      <hr className="w-full my-6 h-6 border-width-2 border-gray-700 dark:border-gray-200" />
-      <span className="text-gray-700 dark:text-white pb-3">Estado actual</span>
-      <hr className="w-full my-6 h-2 border-gray-200 dark:border-gray-700" />
-      <div className="flex flex-wrap justify-between pr-10">
-        <ul
-          role="list"
-          className="max-w-sm ml-10 divide-y divide-gray-200 dark:divide-gray-700"
-        >
-          <h3 className="flex items-center ml-2">Temperatura actual</h3>
-          <li className="py-3 sm:py-4">
-            <div className="flex items-center space-x-3 rtl:space-x-reverse">
-              <span className="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
-                <span className="w-2 h-2 me-1 bg-green-500 rounded-full"></span>
-                24°C
-              </span>
-            </div>
-          </li>
-        </ul>
-        <ul
-          role="list"
-          className="max-w-sm ml-10 divide-y divide-gray-200 dark:divide-gray-700"
-        >
-          <h3 className="flex items-center ml-2">Humedad actual</h3>
-          <li className="py-3 sm:py-4">
-            <div className="flex items-center space-x-3 rtl:space-x-reverse">
-              <span className="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
-                <span className="w-2 h-2 me-1 bg-yellow-500 rounded-full"></span>
-                18%
-              </span>
-            </div>
-          </li>
-        </ul>
-        <ul
-          role="list"
-          className="max-w-sm ml-10 divide-y divide-gray-200 dark:divide-gray-700"
-        >
-          <h3 className="flex items-center ml-2">Movimiento</h3>
-          {isRealMovementActive ? (
-            <li className="py-3 sm:py-4">
-              <div className="flex items-center space-x-3 rtl:space-x-reverse">
-                <span className="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
-                  <span className="w-2 h-2 me-1 bg-green-500 rounded-full"></span>
-                  Activo
-                </span>
-              </div>
-            </li>
-          ) : (
-            <li className="py-3 sm:py-4">
-              <div className="flex items-center space-x-3 rtl:space-x-reverse">
-                <span className="inline-flex items-center bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
-                  <span className="w-2 h-2 me-1 bg-red-500 rounded-full"></span>
-                  Desactivo
-                </span>
-              </div>
-            </li>
-          )}
         </ul>
       </div>
     </div>

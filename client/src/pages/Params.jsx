@@ -1,6 +1,17 @@
-import RangeSlider from "../components/RangeSlider";
+import SetParams from "../components/SetParams";
+import SensorData from "../components/SensorData";
 import { initFlowbite } from "flowbite";
+import client from "../services/connection";
+client.on("connect", () => {
+  console.log("Connected to MQTT broker");
+  client.subscribe("/airguard/temp");
+});
 
+client.on("message", (topic, message) => {
+  if (topic === "/airguard/temp") {
+    console.log("Received message:", message.toString());
+  }
+});
 // Initialize Flowbite
 initFlowbite();
 export default function Params() {
@@ -15,11 +26,9 @@ export default function Params() {
           </span>
           de tu habitación.
         </h4>
-        <p className="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
-          AirGuard{" "}
-        </p>
       </div>
-      <RangeSlider />
+      <SetParams />
+      <SensorData />
     </div>
   );
 }
