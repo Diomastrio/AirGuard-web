@@ -2,10 +2,10 @@
 /* eslint-disable react/no-unknown-property */
 import React, { useState } from "react";
 import { initFlowbite } from "flowbite";
-import RadioWithToggleText from "./RadioInput";
 import client from "../services/connection";
-// import { toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export default function SetParams() {
   initFlowbite();
 
@@ -17,11 +17,11 @@ export default function SetParams() {
   const handleGasChange = (e) => {
     setGasNum(e.target.value);
   };
-  const [isMovementActive, setIsMovementActive] = useState(true);
 
   return (
     //descripción: "Este es un componente deslizante de rango simple que le permite configurar la temperatura, la detección de gas y la detección de movimiento".
     <div className="w-1/2 mx-auto my-8 p-8 flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow dark:border-gray-700 dark:bg-gray-800 ">
+      <ToastContainer />
       <div className="mb-4 border-b border-gray-200 dark:border-gray-700">
         <ul
           className="flex flex-wrap -mb-px text-sm font-medium text-center"
@@ -130,7 +130,6 @@ export default function SetParams() {
         }}
       />
       <div className=" pb-6"></div>
-      {/* description: below is the way of figuring if there is gas detected and movement */}
       <h3 className="flex items-center mr-4">Gas</h3>
       <span className="text-gray-700 dark:text-white pb-3">{gasNum} ppm</span>
       <input
@@ -154,8 +153,12 @@ export default function SetParams() {
             type="button"
             className="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
             onClick={() => {
-              // Use the MQTT client to publish a message to the "/airguard/set/temp" topic with the `temp` constant as the payload
+              // Usa el cliente MQTT para publicar un mensaje en el tema "/airguard/set/temp/max" con la constante `temp` como carga útil
               client.publish("/airguard/set/temp/max", temp.toString());
+              toast("Temperatura establecida!", {
+                type: "success",
+                position: "bottom-center",
+              });
             }}
           >
             Establecer Temperatura
@@ -164,8 +167,12 @@ export default function SetParams() {
             type="button"
             className="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
             onClick={() => {
-              // Use the MQTT client to publish a message to the "/airguard/set/gas" topic with the `isGasActive` constant as the payload
+              // Usa el cliente MQTT para publicar un mensaje en el tema "/airguard/set/humo-gas" con la constante `gasNum` como carga útil
               client.publish("/airguard/set/humo-gas", gasNum.toString());
+              toast("Gas establecido!", {
+                type: "success",
+                position: "bottom-center",
+              });
             }}
           >
             Establecer Gas
@@ -174,8 +181,13 @@ export default function SetParams() {
             type="button"
             className="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
             onClick={() => {
-              const message = "setDistance"; // replace with your actual message
+              // usa el cliente MQTT para publicar un mensaje en el tema "/airguard/set/movement" con la constante `message` como carga útil
+              const message = "setDistance";
               client.publish("/airguard/set/movement", message);
+              toast("Distancia restablecida!", {
+                type: "success",
+                position: "bottom-center",
+              });
             }}
           >
             Establecer Movimiento
