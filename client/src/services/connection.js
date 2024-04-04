@@ -11,11 +11,11 @@ const client = mqtt.connect("ws://broker.emqx.io:8083/mqtt", {
 });
 // broker.hivemq.com
 client.on("connect", () => {
-  console.log("Connected to MQTT broker");
+  console.log("Conectado al broker MQTT");
 });
 
 client.on("error", (error) => {
-  console.error("Error connecting to MQTT broker:", error);
+  console.error("Error conectando al broker:", error);
 
   if (error.message.includes("WebSocket connection failed")) {
     console.error(

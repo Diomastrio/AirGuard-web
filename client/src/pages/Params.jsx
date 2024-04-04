@@ -5,13 +5,17 @@ import client from "../services/connection";
 client.on("connect", () => {
   console.log("Connected to MQTT broker");
   client.subscribe("/airguard/temp");
+  client.subscribe("/airguard/humidity");
+  client.subscribe("/airguard/gas-humo");
+  client.subscribe("/airguard/movement");
+  client.publish("/airguard/temp");
 });
 
-client.on("message", (topic, message) => {
-  if (topic === "/airguard/temp") {
-    console.log("Received message:", message.toString());
-  }
-});
+// client.on("message", (topic, message) => {
+//   if (topic === "/airguard/temp") {
+//     console.log("Received message:", message.toString());
+//   }
+// });
 // Initialize Flowbite
 initFlowbite();
 export default function Params() {
