@@ -2,7 +2,7 @@
 /* eslint-disable react/no-unknown-property */
 import React, { useState } from "react";
 import { initFlowbite } from "flowbite";
-import client from "../services/connection";
+import client from "../../../api/services/connection";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

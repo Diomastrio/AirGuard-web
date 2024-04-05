@@ -1,26 +1,20 @@
 import SetParams from "../components/SetParams";
 import SensorData from "../components/SensorData";
 import { initFlowbite } from "flowbite";
-import client from "../services/connection";
-client.on("connect", () => {
-  console.log("Connected to MQTT broker");
-  client.subscribe("/airguard/temp");
-  client.subscribe("/airguard/temp/alert");
-  client.subscribe("/airguard/humidity");
-  client.subscribe("/airguard/gas-humo");
-  client.subscribe("/airguard/humo-gas/alert");
-  client.subscribe("/airguard/movement");
-  client.publish("/airguard/set/temp/max");
-  client.publish("/airguard/set/humo-gas");
-  client.publish("/airguard/set/movement");
-});
-
-// client.on("message", (topic, message) => {
-//   if (topic === "/airguard/temp") {
-//     console.log("Received message:", message.toString());
-//   }
+// import client from "../services/connection";
+// client.on("connect", () => {
+//   console.log("Connected to MQTT broker");
+//   client.subscribe("/airguard/temp");
+//   client.subscribe("/airguard/temp/alert");
+//   client.subscribe("/airguard/humidity");
+//   client.subscribe("/airguard/gas-humo");
+//   client.subscribe("/airguard/humo-gas/alert");
+//   client.subscribe("/airguard/movement");
+//   client.publish("/airguard/set/temp/max");
+//   client.publish("/airguard/set/humo-gas");
+//   client.publish("/airguard/set/movement");
 // });
-// Initialize Flowbite
+
 initFlowbite();
 export default function Params() {
   return (

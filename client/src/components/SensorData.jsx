@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
-import client from "../services/connection";
+import client from "../../../api/services/connection";
 
 // client.on("message", (topic, message) => {
 //   if (topic === "/airguard/temp") {
