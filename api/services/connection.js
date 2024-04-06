@@ -18,9 +18,9 @@ client.on("connect", () => {
   client.subscribe("/airguard/gas-humo");
   client.subscribe("/airguard/humo-gas/alert");
   client.subscribe("/airguard/movement");
-  client.publish("/airguard/set/temp/max");
-  client.publish("/airguard/set/humo-gas");
-  client.publish("/airguard/set/movement");
+  // client.publish("/airguard/set/temp/max", "");
+  // client.publish("/airguard/set/humo-gas", "");
+  // client.publish("/airguard/set/movement", "");
 });
 
 client.on("error", (error) => {
