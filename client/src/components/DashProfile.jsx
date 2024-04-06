@@ -106,11 +106,11 @@ export default function DashProfile() {
     setUpdateUserError(null);
     setUpdateUserSuccess(null);
     if (Object.keys(formData).length === 0) {
-      setUpdateUserError("No changes made");
+      setUpdateUserError("Ningun cambio realizado");
       return;
     }
     if (imageFileUploading) {
-      setUpdateUserError("Please wait for image to upload");
+      setUpdateUserError("Pprfavor espere a que la imagen se cargue");
       return;
     }
     try {
@@ -128,7 +128,7 @@ export default function DashProfile() {
         setUpdateUserError(data.message);
       } else {
         dispatch(updateSuccess(data));
-        setUpdateUserSuccess("User's profile updated successfully");
+        setUpdateUserSuccess("Perfil actualizado correctamente");
       }
     } catch (error) {
       dispatch(updateFailure(error.message));
@@ -244,7 +244,7 @@ export default function DashProfile() {
           outline
           disabled={loading || imageFileUploading}
         >
-          {loading ? "Loading..." : "Actualizar"}
+          {loading ? "Cargando..." : "Actualizar"}
         </Button>
         {currentUser.isAdmin && (
           <Link to={"/create-post"}>

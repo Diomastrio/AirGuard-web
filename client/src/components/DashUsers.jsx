@@ -75,6 +75,7 @@ export default function DashUsers() {
               <Table.HeadCell>Nombre de usuario</Table.HeadCell>
               <Table.HeadCell>Email</Table.HeadCell>
               <Table.HeadCell>Admin</Table.HeadCell>
+              <Table.HeadCell>Cliente</Table.HeadCell>
               <Table.HeadCell>Eliminar</Table.HeadCell>
             </Table.Head>
             {users.map((user) => (
@@ -94,6 +95,13 @@ export default function DashUsers() {
                   <Table.Cell>{user.email}</Table.Cell>
                   <Table.Cell>
                     {user.isAdmin ? (
+                      <FaCheck className="text-green-500" />
+                    ) : (
+                      <FaTimes className="text-red-500" />
+                    )}
+                  </Table.Cell>
+                  <Table.Cell>
+                    {user.isClient ? (
                       <FaCheck className="text-green-500" />
                     ) : (
                       <FaTimes className="text-red-500" />

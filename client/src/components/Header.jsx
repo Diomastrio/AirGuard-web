@@ -100,12 +100,14 @@ export default function Header() {
               <Dropdown.Item>Perfil</Dropdown.Item>
             </Link>
             <Dropdown.Divider />
-            <Dropdown.Item onClick={handleSignout}>Sign out</Dropdown.Item>
+            <Dropdown.Item onClick={handleSignout}>
+              Cerrar session
+            </Dropdown.Item>
           </Dropdown>
         ) : (
           <Link to="/sign-in">
             <Button gradientDuoTone="purpleToBlue" outline>
-              Sign In
+              Iniciar session
             </Button>
           </Link>
         )}

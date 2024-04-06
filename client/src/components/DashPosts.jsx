@@ -80,11 +80,10 @@ export default function DashPosts() {
         <>
           <Table hoverable className="shadow-md">
             <Table.Head>
-              <Table.HeadCell>Fecha de actualizacion</Table.HeadCell>
-              <Table.HeadCell>Contenido de comentario</Table.HeadCell>
-              <Table.HeadCell>Numbero de likes</Table.HeadCell>
-              <Table.HeadCell>PostId</Table.HeadCell>
-              <Table.HeadCell>UserId</Table.HeadCell>
+              <Table.HeadCell>Fecha de Publicacion</Table.HeadCell>
+              <Table.HeadCell>Imagen</Table.HeadCell>
+              <Table.HeadCell>Titulo</Table.HeadCell>
+              <Table.HeadCell>categoria</Table.HeadCell>
               <Table.HeadCell>Eliminar</Table.HeadCell>
               <Table.HeadCell>
                 <span>Editar</span>
