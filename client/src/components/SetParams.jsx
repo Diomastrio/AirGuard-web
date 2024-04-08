@@ -54,7 +54,7 @@ export default function SetParams() {
               aria-controls="dashboard"
               aria-selected="false"
             >
-              Deteccion de gas
+              Gas & humo
             </button>
           </li>
           <li className="me-2" role="presentation">
@@ -84,7 +84,8 @@ export default function SetParams() {
             <strong className="font-medium text-gray-800 dark:text-white">
               Temperatura
             </strong>{" "}
-            Puedes ajustar el umbral el cual al ser sobrepasado dara una alerta.
+            el control deslizante funciona para ajustar el umbral el cual al ser
+            sobrepasado dara una alerta.
           </p>
         </div>
         <div
@@ -96,9 +97,10 @@ export default function SetParams() {
           <p className="text-sm text-gray-500 dark:text-gray-400">
             En la seccion de{" "}
             <strong className="font-medium text-gray-800 dark:text-white">
-              Gas
+              Gas & humo
             </strong>{" "}
-            puedes ver si existe alguna contaminacion de gas en el aire.
+            el control deslizante funciona para ajustar el umbral el cual al ser
+            sobrepasado dara una alerta.
           </p>
         </div>
         <div
@@ -108,11 +110,11 @@ export default function SetParams() {
           aria-labelledby="settings-tab"
         >
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            En la seccion de{" "}
+            En el boton de{" "}
             <strong className="font-medium text-gray-800 dark:text-white">
               Movimiento
             </strong>{" "}
-            puedes ver si hay algun movimiento en la habitacion.
+            puedes reestalecer la distancia del sensor ultrasonico.
           </p>
         </div>
       </div>
