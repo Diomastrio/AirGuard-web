@@ -3,13 +3,13 @@ import { errorHandler } from "../utils/error.js";
 import User from "../models/user.model.js";
 
 export const test = (req, res) => {
-  res.json({ message: "API is working!" });
+  res.json({ message: "La API esta funcionando!" });
 };
 
 export const updateUser = async (req, res, next) => {
   if (req.user.id !== req.params.userId) {
     return next(
-      errorHandler(403, "No estas autorizado para editar este usuario")
+      errorHandler(403, "No estas autorizado para actualizar este usuario")
     );
   }
   if (req.body.password) {

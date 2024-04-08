@@ -23,12 +23,10 @@ client.on("error", (error) => {
   console.error("Error conectando al broker:", error);
 
   if (error.message.includes("WebSocket connection failed")) {
-    console.error(
-      "WebSocket connection failed. Check network or broker status."
-    );
+    console.error("Conexion de websocket fallida, revisa conexion.");
   } else if (error.message.includes("Connection refused")) {
     console.error(
-      "Connection refused. Check broker address or security settings."
+      "Conexion denegada. Revisa direccion del broker o ajustes de seguridad."
     );
   }
 });
