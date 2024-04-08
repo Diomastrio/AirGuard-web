@@ -114,7 +114,7 @@ export default function SetParams() {
             <strong className="font-medium text-gray-800 dark:text-white">
               Movimiento
             </strong>{" "}
-            puedes reestalecer la distancia del sensor ultrasonico.
+            puedes restablecer la distancia del sensor ultrasonico.
           </p>
         </div>
       </div>
