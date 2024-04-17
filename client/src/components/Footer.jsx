@@ -26,6 +26,18 @@ export default function FooterCom() {
           </div>
           <div className="grid grid-cols-2 gap-8 mt-4 sm:grid-cols-3 sm:gap-6">
             <div>
+              <Footer.Title title="FAQ" />
+              <Footer.LinkGroup col>
+                <Footer.Link
+                  href="/faq"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  preguntas frecuentes
+                </Footer.Link>
+              </Footer.LinkGroup>
+            </div>
+            <div>
               <Footer.Title title="Nosotros" />
               <Footer.LinkGroup col>
                 <Footer.Link
@@ -44,7 +56,7 @@ export default function FooterCom() {
                 </Footer.Link>
               </Footer.LinkGroup>
             </div>
-            <div>
+            {/* <div>
               <Footer.Title title="Síganos" />
               <Footer.LinkGroup col>
                 <Footer.Link
@@ -56,7 +68,8 @@ export default function FooterCom() {
                 </Footer.Link>
                 <Footer.Link href="#">Discord</Footer.Link>
               </Footer.LinkGroup>
-            </div>
+            </div> */}
+
             <div>
               <Footer.Title title="Legal" />
               <Footer.LinkGroup col>
@@ -77,10 +90,7 @@ export default function FooterCom() {
             <Footer.Icon href="#" icon={BsFacebook} />
             <Footer.Icon href="#" icon={BsInstagram} />
             <Footer.Icon href="#" icon={BsTwitter} />
-            <Footer.Icon
-              href="https://github.com/diomastrio"
-              icon={BsGithub}
-            />
+            <Footer.Icon href="https://github.com/diomastrio" icon={BsGithub} />
             <Footer.Icon href="#" icon={BsDribbble} />
           </div>
         </div>

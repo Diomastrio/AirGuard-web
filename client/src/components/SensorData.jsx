@@ -2,11 +2,6 @@
 import { useState, useEffect } from "react";
 import client from "../../../api/services/connection";
 
-// client.on("message", (topic, message) => {
-//   if (topic === "/airguard/temp") {
-//     console.log("Received message:", message.toString());
-//   }
-// });
 export default function SensorData() {
   const [isRealMovementActive, setIsRealMovementActive] = useState(true);
   const [temp, setTemp] = useState(null);
