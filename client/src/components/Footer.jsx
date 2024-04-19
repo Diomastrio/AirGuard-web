@@ -8,7 +8,10 @@ import {
   BsGithub,
   BsDribbble,
 } from "react-icons/bs";
+import { Navbar } from "flowbite-react";
+import { useLocation } from "react-router-dom";
 export default function FooterCom() {
+  const path = useLocation().pathname;
   return (
     <Footer container className="border border-t-8 border-teal-500">
       <div className="w-full max-w-7xl mx-auto">
@@ -26,16 +29,12 @@ export default function FooterCom() {
           </div>
           <div className="grid grid-cols-2 gap-8 mt-4 sm:grid-cols-3 sm:gap-6">
             <div>
-              <Footer.Title title="FAQ" />
-              <Footer.LinkGroup col>
-                <Footer.Link
-                  href="/faq"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  preguntas frecuentes
-                </Footer.Link>
-              </Footer.LinkGroup>
+              <Navbar>
+                <Footer.Title title="FAQ" />
+                <Navbar.Link active={path === "/"} as={"div"}>
+                  <Link to="/faq">Preguntas frecuentes</Link>
+                </Navbar.Link>
+              </Navbar>
             </div>
             <div>
               <Footer.Title title="Nosotros" />
