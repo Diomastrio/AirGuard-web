@@ -13,11 +13,33 @@ export default function SetParams() {
   const handleChange = (e) => {
     setTempValue(e.target.value);
   };
+
   const [gasNum, setGasNum] = useState(20);
   const handleGasChange = (e) => {
     setGasNum(e.target.value);
   };
 
+  const [showTemperature, setShowTemperature] = useState(true);
+  const [showGas, setShowGas] = useState(false);
+  const [showMove, setShowMove] = useState(false);
+
+  const handleTemperatureButtonClick = () => {
+    setShowTemperature(true);
+    setShowGas(false);
+    setShowMove(false);
+  };
+
+  const handleGasButtonClick = () => {
+    setShowGas(true);
+    setShowTemperature(false);
+    setShowMove(false);
+  };
+
+  const handleMoveButtonClick = () => {
+    setShowMove(true);
+    setShowTemperature(false);
+    setShowGas(false);
+  };
   return (
     //descripción: "Este es un componente deslizante de rango simple que le permite configurar la temperatura, la detección de gas y la detección de movimiento".
     <div className="w-1/2 mx-auto my-8 p-8 flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow dark:border-gray-700 dark:bg-gray-800 ">
@@ -40,6 +62,7 @@ export default function SetParams() {
               role="tab"
               aria-controls="profile"
               aria-selected="false"
+              onClick={handleTemperatureButtonClick}
             >
               Temperatura
             </button>
@@ -53,6 +76,7 @@ export default function SetParams() {
               role="tab"
               aria-controls="dashboard"
               aria-selected="false"
+              onClick={handleGasButtonClick}
             >
               Gas & humo
             </button>
@@ -66,12 +90,14 @@ export default function SetParams() {
               role="tab"
               aria-controls="settings"
               aria-selected="false"
+              onClick={handleMoveButtonClick}
             >
               Movimiento
             </button>
           </li>
         </ul>
       </div>
+
       <div id="default-styled-tab-content">
         <div
           className="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800"
@@ -89,7 +115,7 @@ export default function SetParams() {
           </p>
         </div>
         <div
-          className="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800"
+          className="hidden p-2 rounded-lg bg-gray-50 dark:bg-gray-800"
           id="styled-dashboard"
           role="tabpanel"
           aria-labelledby="dashboard-tab"
@@ -104,12 +130,12 @@ export default function SetParams() {
           </p>
         </div>
         <div
-          className="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800"
+          className="hidden p-2 rounded-lg bg-gray-50 dark:bg-gray-800"
           id="styled-settings"
           role="tabpanel"
           aria-labelledby="settings-tab"
         >
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-sm text-gray-500 dark:text-gray-400  justify-between">
             En el boton de{" "}
             <strong className="font-medium text-gray-800 dark:text-white">
               Movimiento
@@ -118,82 +144,116 @@ export default function SetParams() {
           </p>
         </div>
       </div>
-      <h3>Temperatura</h3>
-      <span className="text-gray-700 dark:text-white pb-3">{temp}°C</span>
-      <input
-        type="range"
-        min="-10"
-        max="100"
-        value={temp}
-        onChange={handleChange}
-        className="mx-4 w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer"
-        style={{
-          backgroundImage: `linear-gradient(to right, #4299e1 0%, #4299e1 ${0}%, #d1d5db ${temp}%, #d1d5db 100%)`,
-        }}
-      />
+
+      {showTemperature && (
+        <>
+          <h3>Temperatura</h3>
+          <span className="text-gray-700 dark:text-white pb-3">{temp}°C</span>
+          <input
+            type="range"
+            min="-10"
+            max="100"
+            value={temp}
+            onChange={handleChange}
+            className="mx-4 w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer"
+            style={{
+              backgroundImage: `linear-gradient(to right, #4299e1 0%, #4299e1 ${0}%, #d1d5db ${temp}%, #d1d5db 100%)`,
+            }}
+          />
+        </>
+      )}
+
       <div className=" pb-6"></div>
-      <h3 className="flex items-center mr-4">Gas</h3>
-      <span className="text-gray-700 dark:text-white pb-3">{gasNum} ppm</span>
-      <input
-        type="range"
-        min="0"
-        max="100"
-        value={gasNum}
-        onChange={handleGasChange}
-        className="mx-4 w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer"
-        style={{
-          backgroundImage: `linear-gradient(to right, #4299e1 0%, #4299e1 ${0}%, #d1d5db ${gasNum}%, #d1d5db 100%)`,
-        }}
-      />
+
+      {showGas && (
+        <>
+          <h3 className="flex items-center mr-4">Gas</h3>
+          <span className="text-gray-700 dark:text-white pb-3">
+            {gasNum} ppm
+          </span>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={gasNum}
+            onChange={handleGasChange}
+            className="mx-4 w-full h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer"
+            style={{
+              backgroundImage: `linear-gradient(to right, #4299e1 0%, #4299e1 ${0}%, #d1d5db ${gasNum}%, #d1d5db 100%)`,
+            }}
+          />
+        </>
+      )}
+
+      {showMove && (
+        <>
+          <h3 className="flex items-center ml-2 ">Movimiento</h3>
+        </>
+      )}
+
       <div className=" pb-6"></div>
-      <h3 className="flex items-center ml-2">Movimiento</h3>
-      <div className=" pb-6"></div>
+
       <div className="flex flex-wrap justify-between">
         <div className=" px-2"></div>
+
         <div className="flex flex-wrap px-2">
-          <button
-            type="button"
-            className="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-            onClick={() => {
-              // Usa el cliente MQTT para publicar un mensaje en el tema "/airguard/set/temp/max" con la constante `temp` como carga útil
-              client.publish("/airguard/set/temp/max", temp.toString());
-              toast("Temperatura establecida!", {
-                type: "success",
-                position: "bottom-center",
-              });
-            }}
-          >
-            Establecer Temperatura
-          </button>
-          <button
-            type="button"
-            className="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-            onClick={() => {
-              // Usa el cliente MQTT para publicar un mensaje en el tema "/airguard/set/humo-gas" con la constante `gasNum` como carga útil
-              client.publish("/airguard/set/humo-gas", gasNum.toString());
-              toast("Gas establecido!", {
-                type: "success",
-                position: "bottom-center",
-              });
-            }}
-          >
-            Establecer Gas
-          </button>
-          <button
-            type="button"
-            className="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-            onClick={() => {
-              // usa el cliente MQTT para publicar un mensaje en el tema "/airguard/set/movement" con la constante `message` como carga útil
-              const message = "setDistance";
-              client.publish("/airguard/set/movement", message);
-              toast("Distancia restablecida!", {
-                type: "success",
-                position: "bottom-center",
-              });
-            }}
-          >
-            Establecer Movimiento
-          </button>
+          {showTemperature && (
+            <>
+              <button
+                type="button"
+                className="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+                onClick={() => {
+                  // Usa el cliente MQTT para publicar un mensaje en el tema "/airguard/set/temp/max" con la constante `temp` como carga útil
+                  client.publish("/airguard/set/temp/max", temp.toString());
+                  toast("Temperatura establecida!", {
+                    type: "success",
+                    position: "bottom-center",
+                  });
+                }}
+              >
+                Establecer Temperatura
+              </button>
+            </>
+          )}
+
+          {showGas && (
+            <>
+              <button
+                type="button"
+                className="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+                onClick={() => {
+                  // Usa el cliente MQTT para publicar un mensaje en el tema "/airguard/set/humo-gas" con la constante `gasNum` como carga útil
+                  client.publish("/airguard/set/humo-gas", gasNum.toString());
+                  toast("Gas establecido!", {
+                    type: "success",
+                    position: "bottom-center",
+                  });
+                }}
+              >
+                Establecer Gas
+              </button>
+            </>
+          )}
+
+          {showMove && (
+            <>
+              <button
+                type="button"
+                className="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+                onClick={() => {
+                  // usa el cliente MQTT para publicar un mensaje en el tema "/airguard/set/movement" con la constante `message` como carga útil
+                  const message = "setDistance";
+                  client.publish("/airguard/set/movement", message);
+                  toast("Distancia restablecida!", {
+                    type: "success",
+                    position: "bottom-center",
+                  });
+                }}
+              >
+                Establecer Movimiento
+              </button>
+            </>
+          )}
         </div>
       </div>
     </div>
