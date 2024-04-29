@@ -169,7 +169,7 @@ export default function SetParams() {
         <>
           <h3 className="flex items-center mr-4">Gas</h3>
           <span className="text-gray-700 dark:text-white pb-3">
-            {gasNum} ppm
+            {gasNum} mil ppm
           </span>
           <input
             type="range"
